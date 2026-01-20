@@ -11,3 +11,11 @@ Configuration de la VM :
 * RAM : 1 à 2 Go
 * CPU : 2 cœurs
 * Disque : 20
+
+### Installation des composants
+
+Mise à jour des paquets:  
+`sudo apt-get update && sudo apt-get upgrade`
+
+Apache2 :  
+`sudo apt-get install apache2 -y`
