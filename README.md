@@ -19,11 +19,27 @@ VOIP : FreePBX (IPBX01) avec lignes pour utilisateurs, validation via softphones
 ### L'infrastructure est divisée en zones
 
 * WAN : Connexion externe (plage IP de la box Internet, gateway interne de la box).
-* LAN : Réseau interne (ex. 172.16.10.0/24, à définir), avec serveurs et clients.
-* DMZ : Zone pour services exposés (ex. 10.10.10.0/24, pour WEB externe, messagerie et VOIP ?).
+* LAN : Réseau interne (P3-int) 172.16.10.0/24, avec
+serveurs et clients.
+  * 3 VLAN (Pour plus de securité et une meilleure segmentation)
+    * VLAN Direction
+    * VLAN DSI
+    * VLAN Serveurs
+* DMZ : Zone pour services exposés (P3-DMZ) 10.10.10.0/24, pour WEB externe, messagerie et VOIP ?.
 
     inserer diagramme drawio
 
 ![alt text](<Ressources_main/schema réseau ubill.drawio.png>)
+
+| Nom      | Type     | Interconnexion | IP           | Compte        | MDP      | Commentaire                                 |
+|----------|----------|----------------|--------------|---------------|----------|---------------------------------------------|
+| FW01     | Pare-feu | WAN P3-int DMZ | 172.16.10.5  | admin         | pfsense  |                                             |
+| SRWIN01  | Serveur  | P3-int         | 172.16.10.10 | Administrator | Azerty1* | Windows Server Role AD-DS, domaine tssr.lan |
+| SRLX01   | Serveur  | DMZ            |              | Wilder        | Azerty1* | Debian 12 serveur web externe               |
+| CLIWIN01 | Client   | P3-int         | 172.16.10.20 | Wilder1       | Azerty1* | Windows 10                                  |
+| CLIWIN02 | Client   | P3-int         | 172.16.10.22 | Wilder2       | Azerty1* | Windows 11                                  |
+| IPBX01   | VOIP     |                |              |               |          | Possible sur debian ?                       |
+| SRWIN04  | Serveur  |                |              |               |          | WSUS                                        |
+| GLPI01   | Serveur  | P3-int         |
 
 ### Configuration des clients (Windows 10 et 11)

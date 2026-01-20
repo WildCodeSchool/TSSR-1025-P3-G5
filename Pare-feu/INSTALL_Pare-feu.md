@@ -2,7 +2,7 @@
 
 ### Prérequis
 
-VirtualBox installé sur votre machine hôte.
+VirtualBox installé sur la machine hôte.
 ISO de pfSense Community Edition (à télécharger depuis <https://pfsense.org/download>)  
 
 **Installer la dernière version stable**
@@ -11,7 +11,7 @@ ISO de pfSense Community Edition (à télécharger depuis <https://pfsense.org/d
 
 ---
 
-### Crée une nouvelle VM pfSense
+### Nouvelle VM pfSense
 
 * Nom : FW01
 * Type : BSD → FreeBSD (64-bit)
@@ -23,7 +23,7 @@ Disque : 20
 | Carte | Attaché à          | Nom réseau | Rôle pfSense | IP configurée ensuite  | Commentaire                                  |
 | ----- | ------------------ | ---------- | ------------ | ---------------------- | -------------------------------------------- |
 | 1     | **Pont**           | —          | WAN          | DHCP ou 192.168.1.x/24 | Connecté à box FAI                           |
-| 2     | **Réseau interne** | `P3-int`   | LAN          | 172.16.10.5/24       | Réseau interne BillU (comme ton WiFi actuel) |
+| 2     | **Réseau interne** | `P3-int`   | LAN          | 172.16.10.5/24       | Réseau interne  |
 | 3     | **Réseau interne** | `P3-DMZ`   | DMZ          | 10.10.10.6/24        | Zone démilitarisée (serveurs exposés)        |
 
 ***Selection de l'interface WAN***
@@ -32,7 +32,7 @@ Disque : 20
 ![alt text](Ressources/pfsense_install6.png)
 
 * Ne pas choisir d'option DHCP pour les interfaces LAN et DMZ car ce service sera géré par Windows Server (SRWIN01)
-
+  
 ### Accès Web GUI & Configuration de base
 
 Depuis une VM sur le réseau LAN (172.16.10.0/24) :
