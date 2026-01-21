@@ -1,5 +1,7 @@
 ### Ajout du rôle Active directory Domain Services
 
+>L'ajout de ce rôle est conseillé avant les autres, nottament le DNS.
+
 * Add Roles and Features
 * Selectionner le service
 * Suivre les étapes d'installation

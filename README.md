@@ -19,12 +19,11 @@ VOIP : FreePBX (IPBX01) avec lignes pour utilisateurs, validation via softphones
 ### L'infrastructure est divisée en zones
 
 * WAN : Connexion externe (plage IP de la box Internet, gateway interne de la box).
-* LAN : Réseau interne (P3-int) 172.16.10.0/24, avec
-serveurs et clients.
+* LAN : Réseau interne avec serveurs et machines clients
   * 3 VLAN (Pour plus de securité et une meilleure segmentation)
-    * VLAN Direction
+    * VLAN Serveur
     * VLAN DSI
-    * VLAN Serveurs
+    * VLAN Utilisateurs
 * DMZ : Zone pour services exposés (P3-DMZ) 10.10.10.0/24, pour WEB externe, messagerie et VOIP ?.
 
     inserer diagramme drawio
