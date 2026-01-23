@@ -41,11 +41,11 @@ P   -> Permissions => Les permissions sur les ressources
 
 * Le groupe est alors créé dans l'OU correspondante avec une catégorie "Sécurité" et un scope "Global"
 
-### Création des utilisateurs  
+### Création des utilisateuSrs  
 
 * Possible en powershell, ici en graphique :
-  * Se rendre dans Tools/Active Directory Users and computers puis clic droit New User
-  * Renseigner les informations, next et décocher le changement de mot de passe à la première connexion  
+  * Se rendre dans Tools/Active Directory UsersS and computers puis clic droit New User
+  * Renseigner les informations, next et décocher le changement de mot de passe à la première connexion  S
 
 ![alt text](Ressources/active_directory17.png)  
 
@@ -60,3 +60,53 @@ P   -> Permissions => Les permissions sur les ressources
 * Possible en graphique ou avec la commandes powershell suivante (exemple avec le premier utilisateurs) :  
 
 `Add-ADGroupMember -Members "Loic Blanc" -Identity "GrpUsers-com_rp"`
+
+### Ajout des utilisateurs dans les OU
+
+***IMPORTANT***: Pour le bon fonctionnenment des GPO, les utilisateurs ***et pas seulements les groupes***  doivent êtres placès dans les OU correspondantes  
+
+* Structure hierarchique avec une OU globale utilisateurs et des OU par départements.
+
+![alt text](Ressources/active_directory20.png)
+
+## Création de GPO
+
+### Ajout des utilisateurs dans les OU
+
+Si aucune GPO ne fonctionne (même Default Domain Policy), message "refusés"
+
+Causes principales rencontrées :
+
+* Utilisateurs laissés dans CN=Users (container système) = pas de GPO OU appliquée.
+* Blocage d'héritage activé sur OU parent ou domaine (caché dans Group Policy Inheritance).
+* Authenticated Users et Domain computers sans Read dans Delegation Advanced de la GPO.
+* Bien verifier que l'ordinateur n'est pas dans le container système mais le déplacer dans une OU créée.
+
+![alt text](Ressources/active_directory19.png)
+
+### Structure optimale d'une GPO pour éviter des problèmes
+
+Ici avec une GPO ciblant les utilisateurs du groupe communication et rp.
+
+Création de la GPO dans le dossier Group policy object, "enable" ou "disable computer settings" et "link" de la GPO dans l'OU LabUsers-com_rp
+
+**Paramétrage de la GPO**  
+
+Security Filtering :
+
+* GrpUsers-com_rp
+
+Delegation :
+
+* Authenticated Users -> Read
+* Domain Computers -> Read (redondant mais bonne pratique)
+* GrpUsers-dsi -> Read + Apply GP  
+
+![alt text](Ressources/active_directory21.png)
+
+* Les utilisateurs du département communication n'ont plus accès au panneau de configuration.
+* Tous les utilisateurs de l'entreprise ont le même fond d'écran, avec la GPO définie dans l'OU LabAllUsers qui contient les OU de tous les départements.Le security filtering est alors authenticated users.
+* La commande `gpresult /R` affiche les RSOP (Resultant Set of Policy) appliqués à l'utilisateur.
+Ici un utilisateur du groupe communication/rp.  
+
+![alt text](Ressources/active_directory22.png)
