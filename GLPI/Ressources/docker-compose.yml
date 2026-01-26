@@ -1,0 +1,36 @@
+services:
+  glpi:
+    image: glpi/glpi:11.0
+    container_name: glpi
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - glpi_files:/var/www/html/glpi/files
+      - glpi_marketplace:/var/www/html/glpi/marketplace
+      - glpi_plugins:/var/www/html/glpi/plugins
+      - glpi_config:/var/www/html/glpi/config
+    environment:
+      - TIMEZONE=Europe/Paris
+      - GLPI_LANG=fr_FR
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.11
+    container_name: glpi-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Azerty1*
+      MYSQL_DATABASE: glpi
+      MYSQL_USER: glpi
+      MYSQL_PASSWORD: Azerty1*
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  glpi_files:
+  glpi_marketplace:
+  glpi_plugins:
+  glpi_config:
+  db_data:

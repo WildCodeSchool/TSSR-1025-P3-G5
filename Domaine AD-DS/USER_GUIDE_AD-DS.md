@@ -45,7 +45,7 @@ P   -> Permissions => Les permissions sur les ressources
 
 * Possible en powershell, ici en graphique :
   * Se rendre dans Tools/Active Directory UsersS and computers puis clic droit New User
-  * Renseigner les informations, next et décocher le changement de mot de passe à la première connexion  S
+  * Renseigner les informations, next et décocher le changement de mot de passe à la première connexion  
 
 ![alt text](Ressources/active_directory17.png)  
 
@@ -110,3 +110,61 @@ Delegation :
 Ici un utilisateur du groupe communication/rp.  
 
 ![alt text](Ressources/active_directory22.png)
+
+### GPO : Politique de mot de passe (complexité, longueur, etc.)  
+
+* **Longueur** : Computer configuration / Windows Settings / Password Policy / Minimum password lenght
+
+![alt text](Ressources/active_directory23.png)  
+
+* **Complexité** : Computer configuration / Windows Settings / Password Policy / Password must meet complexity requirements
+***L'onglet explain detaille les connditions applicables (ne contient pas le nom d'utilisateur, longueur minimum 6, caractères spéciaux...)***  
+
+![alt text](Ressources/active_directory24.png)
+
+* Activer et lier la GPO à la racine du domaine
+* Resultat à la demande de changement de mot de passe à la première connexion d'un utilisateur.  
+
+![alt text](Ressources/active_directory25.png)
+
+### GPO : Verrouillage de compte (blocage de l'accès à la session après quelques erreur de mot de passe)  
+
+* Computer configuration / Windows Settings / Account Lockout Policy / Account lockout threshold.
+Ici 3 essais maximums  
+***Des valeurs suggèrées (modifiables ensuite) sont appliquées pour définir le temps avant un reset des essais de mots passes ou une tentative de reconnexion. Le temps avant reset de l'essai ne peut être alors inférieur à celui pour tenter de se reconnecter***  
+
+![alt text](Ressources/active_directory26.png)
+
+## GPO : Gestion d'un compte du domaine qui est administrateur local des machines
+
+* Créer un compte <admin-local@tssr.lan>
+* Le placer dans un groupe AdminLocal et une OU LabAdminLocal
+* Créer la GPO : Dans Computer configuration / Security Settings / Restricetd groups
+  * Ajouter le groupe Administrators
+  * Dans propriété d'Administrators, ajouter le groupe AdminLocal
+  * Possible d'ajouter des membres de la DSI dans le groupe AdminLocal (ils auront donc les droits d'administrations sur leurs sessisons)
+  * Lier la GPO à l'OU Computer et filtrer avec Domain Computers et Groupe DSI
+  * Il serait possible de limiter le filtre aux machines de la DSI pour plus de securité.
+
+![alt text](Ressources/active_directory27.png)
+
+![alt text](Ressources/active_directory28.png)
+
+## GPO : installation d'un programme
+
+* Dans software settings / Software installation / clic droit / Add package
+* Renseigner un chemin partagé depuis le serveur avec un fichier en .msi
+
+![alt text](Ressources/active_directory31.png)
+
+* Plusieurs options d'installation :
+
+  * Published (recommandé pour une configuration utilisateur : l'utilisateur peut l'installer via "Programmes et fonctionnalités" ou "Ajouter/Supprimer")
+  * Assigned installation auto au login, plus silencieux.
+
+![alt text](Ressources/active_directory29.png)
+
+* Lier la GPO et filtrer selon les besoins
+* Résultat sur un poste client avec une installation Published :
+
+![alt text](Ressources/active_directory30.png)
