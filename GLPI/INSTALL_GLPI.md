@@ -87,5 +87,13 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev
 * Indiquer le serveur SQL db
 * L'utilisateur glpi
 * Le mot de passe defini dans le fichier compose
+* L'installation est terminée
 
 ![alt text](Ressources/glpi-install5.png)
+
+## Mis en place d'un alias record DNS
+
+* Pour un accès facilité des utilisateurs au service de ticketing.  
+Par exemple "billu-service-it.com.tssr.lan"  
+
+![alt text](Ressources/glpi-install7.png)

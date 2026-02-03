@@ -41,7 +41,7 @@ P   -> Permissions => Les permissions sur les ressources
 
 * Le groupe est alors créé dans l'OU correspondante avec une catégorie "Sécurité" et un scope "Global"
 
-### Création des utilisateuSrs  
+### Création des utilisateurs  
 
 * Possible en powershell, ici en graphique :
   * Se rendre dans Tools/Active Directory UsersS and computers puis clic droit New User
@@ -168,3 +168,21 @@ Ici 3 essais maximums
 * Résultat sur un poste client avec une installation Published :
 
 ![alt text](Ressources/active_directory30.png)
+
+## GPO : Politique de securité powershell
+
+Toutes les paramètres powershell se trouvent dans :
+
+Computer Configuration / Policies / Administrative Templates / Windows Components / Windows PowerShell  
+
+* Turn on Script Execution (Exécution des scripts PowerShell)  
+Enabled "Allow only signed scripts" and "RemoteSigned"  
+Empêche l'exécution de scripts non signés (ex. : .ps1 téléchargés par un malware)
+
+![alt text](Ressources/active_directory32.png)
+
+* Turn on PowerShell Script Block Logging  
+Enabled
+Enregistre tout bloc de code PowerShell exécuté (même en mémoire, sans fichier .ps1). Très utile pour l'investigation (logs dans Event Viewer / Applications and Services Logs /Microsoft / Windows / PowerShell/Operational).
+
+* Lier la GPO à l'OU computers

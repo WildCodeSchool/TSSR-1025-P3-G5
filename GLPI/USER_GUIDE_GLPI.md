@@ -33,7 +33,7 @@ pour importer les utilisateurs
   
 ![alt text](Ressources/glpi-user6.png)
 
-## Attribution de profils
+## Gestion du tiicketing - Attribution de profils
 
  Les profils définissent les **droits et permissions** de chaque utilisateur dans GLPI. Voici les principaux profils par défaut :
 
@@ -119,7 +119,7 @@ Lors de l'import depuis l'AD, attribuez :
 * **Supervisor** : aux responsables d'équipe
 * **Admin** : uniquement 1-2 personnes de confiance
 
- Les profils peuvent être personnalisés dans GLPI via **Configuration > Profils** pour adapter finement les droits selon vos besoins organisationnels.
+ Les profils peuvent être personnalisés dans GLPI via **Configuration > Profils** pour adapter finement les droits selon les besoins
 
 ### Selection des utilisateurs et attribution de profils
 
@@ -127,7 +127,55 @@ Lors de l'import depuis l'AD, attribuez :
 
 ![alt text](Ressources/glpi-user7.png)
 
-* Ajout du profil admin a a.noel et techncicien aux autres
+* Ajout du profil admin à a.noel et techncicien aux autres
 * Le choix du profil est possible lors de la connexion à GLPI
 
 ![alt text](Ressources/glpi-user9.png)
+
+### Système de ticketing
+
+* Création de catégorie ITIL pour l'assistance
+
+![alt text](Ressources/glpi_user17.png)
+
+* La catégorie devient disponible depuis une demande d'un utilisateur
+
+![alt text](Ressources/glpi_user18.png)  
+
+* Depuis la page d'assistance d'un technicien on accède au ticket créé et on peut agir  
+  * Demande de validation à un supérieur
+  * Répondre à l'utilisateur
+  * Accéder au caractériqtiques de sa machine
+  * Associer des personnes
+  * Modifier les caractéristiques du ticket
+  * Clore le ticket
+  * Renseigner la base de connaissance
+  * ...
+
+![alt text](Ressources/glpi_user19.png)
+
+## Gestion de parc informatique
+
+### Création d'intitulés pour la gestion
+
+* Permets de rassembler les machines par constructeur. 4 présents actuellement dans l'entreprise (HP,DELL,TOSHIBA et LENOVO)
+* Par statut (dans général) : En production, HS, en stock...  
+
+![alt text](Ressources/glpi-user10.png)  
+
+### Import de données avec le plugin Data Injection
+
+* Permet l'import en masse au format csv
+* Télécharger et activer le plugin
+* Créer un modèle d'import et mapper les champs
+  * "Champs de liason" activé pour le nom (normalement numéro de serie "PCA2452") Identifiant unique de chaque machine et évite les doublons même si le "nom" change
+
+![alt text](Ressources/glpi-user13.png)  
+
+* Importer le fichier en csv (dans les ressources)
+
+![alt text](Ressources/glpi-user14.png)  
+
+* L'importation a réussi et les machines sont donc identifiées par leur noms, fabricants, statut (hs, production) et utilisateurs
+
+![alt text](Ressources/glpi_user15.png)
