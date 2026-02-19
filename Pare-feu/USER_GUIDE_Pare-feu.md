@@ -56,4 +56,22 @@ Pour chaque serveur/service il est possible de créer un certificat basé sur le
 
 ![alt text](Ressources/pfsense_user4.png)  
 
-* L'accès a pfsense en web est maintenant certifié sur la machine  
+* L'accès a pfsense en web est maintenant certifié sur la machine
+
+## Création d'alias et de règles
+
+### Alias
+
+* La création d'alias est pratique pour nommer et regrouper des éléments commes des ports, sous réseaux, adresses ip.
+
+![alt text](Ressources/pfsense-user10.png)
+
+![alt text](Ressources/pfsense-user11.png)
+
+* Ces alias pourront être utilisés dans la configuration des différentes règles du parefeu
+
+### Rules
+
+![alt text](Ressources/pfsense-user13.png)
+
+![alt text](Ressources/pfsense-user12.png)
