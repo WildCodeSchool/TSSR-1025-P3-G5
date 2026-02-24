@@ -34,7 +34,7 @@ VOIP : FreePBX (IPBX01) avec lignes pour utilisateurs, validation via softphones
 |-----------------|-------------------|-----------------|-------------------|--------|---------------|----------|
 | FW01            | Pare-feu          | WAN-DMZ-VLAN    | 192.168...... /24 | relais | admin         | pfsense  |
 | SRVWIN01        | Serveur           | VLAN_10_SERVER  | 172.16.10.5       | ❌      | Administrator | Azerty1* |
-| SRVLX01         | Serveur           | VLAN_10_SERVER  | 172.16.10.6       | ❌      | wilder        | Azerty1* |
+| SRVLX01         | Serveur           | DMZ| 10.10.10.4       | ❌      | wilder        | Azerty1* |
 | CLIWIN01        | Client            | VLAN_20_DSI     | 172.16.20.X       | ✔️     |               | Azerty1* |
 | CLIWIN02        | Client            | VLAN_30_USERS   | 172.16.30.X       | ✔️     |               | Azerty1* |
 | IPBX01          | VOIP              | DMZ             | 10.10.10.3        | ❌      |               | Azerty1* |
