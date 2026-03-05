@@ -186,3 +186,27 @@ Enabled
 Enregistre tout bloc de code PowerShell exécuté (même en mémoire, sans fichier .ps1). Très utile pour l'investigation (logs dans Event Viewer / Applications and Services Logs /Microsoft / Windows / PowerShell/Operational).
 
 * Lier la GPO à l'OU computers
+
+## Montage automatique de dossiers partagés individuels  
+
+* Création des dossiers individuels sur un second disque dur E:\ nommé avec le SamAccountName
+* `$users = Get-ADUser -Filter * -SearchBase "OU=LabAllUsers,DC=tssr,DC=lan"
+foreach ($user in $users) {
+    New-Item -Path "E\dossier\$($user.SamAccountName)" -ItemType Directory`
+
+![alt text](Ressources/active_directory33.png)  
+
+* Suppression de l'héritage et "full control" pour les personnes concernées (utilisateur du dossier + Admins)
+
+![alt text](Ressources/active_directory34.png)  
+
+* Création d'un partage SMB avec la commande
+`New-SmbShare -Name "dossiers" -Path "E:\dossiers"`
+
+* Création de la GPO dans User Configuration Drive Maps  
+
+![alt text](Ressources/active_directory36.png)  
+
+* Liaison de la GPO à l'OU des utilisateurs
+
+* Ainsi, chaque utilisateur peut accéder a son dossier personnel/individuel qui est monté automatiquement avec la lettre I
