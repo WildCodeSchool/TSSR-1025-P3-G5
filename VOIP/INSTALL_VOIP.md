@@ -16,6 +16,6 @@
 
 * L'installation terminé, nous pouvons nous connecter au GUI et démarrer le Setup initial
 
-![alt text](Ressources/voip-install3.png)  
-
 ![alt text](Ressources/voip-install1.png)
+
+![alt text](Ressources/voip-install3.png)  

@@ -28,10 +28,10 @@ Disque : 20G
 | Carte | Attaché à          | Nom réseau      | Rôle pfSense | IP configurée | Commentaire                           |
 | ----- | ------------------ | --------------- | ------------ | ---------------------- | ------------------------------------- |
 | 1     | **Pont**           | —               | WAN          | DHCP ou 192.168.1.x/24 | Connecté à box FAI                    |
-| 2     | **Réseau interne** | `intnet-vlan10` | LAN_10_Serveurs          | 172.16.10.1/24         | Réseau interne                        |
-| 3     | **Réseau interne** | `DMZ`           | DMZ          | 10.10.10.1/24          | Zone démilitarisée (serveurs exposés) |
-| 4     |        Réseau interne             |      `intnet-vlan20`            |              |                        |                                       |
-| 5     |       Réseau interne              |  `intnet-vlan30`               |              |                        |                                       |
+| 2     | **Réseau interne** | `intnet-vlan10` | LAN_10_Serveurs          | 172.16.10.1/28         | Réseau interne                        |
+| 3     | **Réseau interne** | `DMZ`           | DMZ          | 10.10.10.1/29          | Zone démilitarisée (serveurs exposés) |
+| 4     |        Réseau interne             |      `intnet-vlan20`            |    LAN_20 DSI          |     172.16.20.1/24                   |           Zone utilisateurs DSI                            |
+| 5     |       Réseau interne              |  `intnet-vlan30`               |     LAN_30_USERS         |        172.16.30.1/24                |       Zone utilisateurs normaux                                |
 
 ***Selection de l'interface WAN***
 ![alt text](Ressources/pfsense_install7.png)

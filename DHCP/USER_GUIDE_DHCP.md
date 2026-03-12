@@ -14,5 +14,3 @@
 ![alt text](Ressources/DHCP2.png)
 
 Ne pas oublier de configurer le DHCP relay dans pfSense.
-
-## IP inverse ?

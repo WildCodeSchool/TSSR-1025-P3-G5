@@ -27,8 +27,11 @@
 
 ## Ajout de compte en local avec Thunderbird
 
+* Remplir comme ci-dessus
+
 ![alt text](Ressources/messagerie-users2.png)
 
+* Accépter le certificat  
 * Test réussi pour l'envoi de mail entre webmail et Thunderbird
 
 ![alt text](Ressources/messagerie-users1.png)
