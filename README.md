@@ -38,5 +38,3 @@ VOIP : FreePBX (IPBX01) avec lignes pour utilisateurs, validation via softphones
 * DMZ : Zone pour services exposés (P3-DMZ) 10.10.10.0/24, pour WEB externe, messagerie et VOIP  
 
 ![alt text](<Ressources_main/schema réseau ubill.jpg>)
-
-### Configuration des clients (Windows 10 et 11)
